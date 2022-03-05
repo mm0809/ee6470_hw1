@@ -211,3 +211,8 @@ void SobelFilter::do_filter() {
 `pixels[3][256 + 2][3]` is a buffer for 3 rows of pixels. Each row has 256 pixel and the additional 2 pixel is used for padding. Before doing convolution it read necessary pixels from FIFO to `pixels[3][256+2][3]` buffer, so at begin it read 3 row of pixels in other time it read 1 rows.
 
 `next_row ` is used to decide which row of buffer would be replace by new row of pixels.
+
+| Iteration                       | 1   | 2   | 3   | 4   | ... | 256 |
+| ------------------------------- | --- | --- | --- | --- | --- | --- |
+| **# row write in to FIFO**      | 3   | 1   | 1   | 1   | ... | 1   |
+| **# row read from result FIFO** | 1   | 1   | 1   | 1   | ... | 1   |

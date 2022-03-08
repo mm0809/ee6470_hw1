@@ -2,6 +2,15 @@
 
 ## Gaussian blur with FIFO
 
+### How to run
+
+```bash
+$ cd part1
+$ mkdir build && cd build
+$ cmake .. && make run
+```
+
+### How it work
 I use 6 FIFO to transmit pixel.
 ```c
 sc_fifo<unsigned char> r;
@@ -102,6 +111,16 @@ void SobelFilter::do_filter() {
 ```
 
 ## Gaussian blur with row buffers
+
+### How to run
+
+```bash
+$ cd part2
+$ mkdir build && cd build
+$ cmake .. && make run
+```
+
+### How it work
 
 Use 6 FIFO to transmit pixel like above.
 
@@ -209,9 +228,24 @@ void SobelFilter::do_filter() {
 }
 ```
 `pixels[3][256 + 2][3]` is a buffer for 3 rows of pixels. Each row has 256 pixel and the additional 2 pixel is used for padding. Before doing convolution it read necessary pixels from FIFO to `pixels[3][256+2][3]` buffer, so at begin it read 3 row of pixels in other time it read 1 rows.
+```
+0 : padding for one pixel (r=0, g=0, b=0)
+This is the data being input to the FIFO.
++--------------------+
+| 0 0 0 0 0 0 0 0 0 0|
+|0+----------------+0|
+|0|                |0|
+|0|                |0|
+|0|Orignal Image's |0|
+|0|     pixels     |0|
+|0|                |0|
+|0|                |0|
+|0+----------------+0|
+| 0 0 0 0 0 0 0 0 0 0|
++--------------------+
+```
 
 `next_row ` is used to decide which row of buffer would be replace by new row of pixels.
-
 | Iteration                       | 1   | 2   | 3   | 4   | ... | 256 |
 | ------------------------------- | --- | --- | --- | --- | --- | --- |
 | **# row write in to FIFO**      | 3   | 1   | 1   | 1   | ... | 1   |

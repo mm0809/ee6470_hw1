@@ -231,18 +231,18 @@ void SobelFilter::do_filter() {
 ```
 0 : padding for one pixel (r=0, g=0, b=0)
 This is the data being input to the FIFO.
-+--------------------+
-| 0 0 0 0 0 0 0 0 0 0|
-|0+----------------+0|
-|0|                |0|
-|0|                |0|
-|0|Orignal Image's |0|
-|0|     pixels     |0|
-|0|                |0|
-|0|                |0|
-|0+----------------+0|
-| 0 0 0 0 0 0 0 0 0 0|
-+--------------------+
++-------------------------+
+| 0 0 0 0 0 0 0 0 0 0 0 0 |
+| 0 +-----------------+ 0 |
+| 0 |                 | 0 |
+| 0 |                 | 0 |
+| 0 | Orignal Image's | 0 |
+| 0 |     pixels      | 0 |
+| 0 |                 | 0 |
+| 0 |                 | 0 |
+| 0 +-----------------+ 0 |
+| 0 0 0 0 0 0 0 0 0 0 0 0 |
++-------------------------+
 ```
 
 `next_row ` is used to decide which row of buffer would be replace by new row of pixels.

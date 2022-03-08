@@ -250,3 +250,9 @@ This is the data being input to the FIFO.
 | ------------------------------- | --- | --- | --- | --- | --- | --- |
 | **# row write in to FIFO**      | 3   | 1   | 1   | 1   | ... | 1   |
 | **# row read from result FIFO** | 1   | 1   | 1   | 1   | ... | 1   |
+
+## Compare of number of pixel transfered
+part1: 9 * 256 * 256 = 589824
+part2: (256 + 2) * (256 + 2) = 66564
+
+part1 / part2 = 8.86
